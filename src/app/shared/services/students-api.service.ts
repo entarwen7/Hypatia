@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class StudentsAPIService {
 // path es URL del API
- private path = 'http://169.57.99.145:32439/api/registroavancecurso/get-avances/:61d612f42654423aa446c3f3/:61ae50571fd2a664908d71b4/:2022-1-3'
+ private path = 'https://61ce31857067f600179c5dec.mockapi.io/menu'
  student$!: Observable<any>
 
  constructor(private http: HttpClient) { }

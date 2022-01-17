@@ -1,1 +1,56 @@
-<p>Hola ....</p>
+<main class="container-fluid bg-light">
+  <div class="row">
+    <div class="col-md-12 bg-light title">
+      <h2 class="p-5 text-center fw-bold ">Hypatia</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-evenly align-items-center p-5">
+      <div>
+        <circle-progress [percent]="65" [radius]="100" [outerStrokeWidth]="10" [innerStrokeWidth]="5"
+          [outerStrokeColor]="'#367BA5'" [innerStrokeColor]="'#7495A5'" [animation]="true" [animationDuration]="300">
+        </circle-progress>
+      </div>
+      <div>
+        <h4>Alejandra Rincón</h4>
+        <p>Practicante</p>
+        <p>ID:51236455</p>
+        <p>Diseño industrial</p>
+      </div>
+    </div>
+  </div>
+  <div class="row bg-phase m-3 p-5">
+    <div class="row ">
+      <div class="col-md-12 text-center">
+        <h4 class="text-primary">
+          <strong>Etapa:</strong> <span>Fase 2</span>
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 ">
+        <p class="p-3 pb-0">Formación:</p>
+      </div>
+      <div class="col-md-6">
+        <p class="float-end p-3 pb-0">PATH</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 progress p-0 bg-progress">
+        <div class="progress-bar border rounded-pill" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0"
+          aria-valuemax="100"></div>
+      </div>
+      <div class="col-md-4 progress p-0 bg-progress">
+        <div class="progress-bar border rounded-pill" role="progressbar" style="width: 60%;" aria-valuenow="25" aria-valuemin="0"
+          aria-valuemax="100"></div>
+      </div>
+      <div class="col-md-4 progress p-0 bg-progress">
+        <div class="progress-bar border rounded-pill" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0"
+          aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+
+  </div>
+</main>
