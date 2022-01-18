@@ -1,0 +1,17 @@
+
+.container-general-sidenav{
+    height: 90vh;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    // border: 4px solid green;
+}
+.container-sidenav{
+    width: 95%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    // border: 5px solid magenta;
+    
+}

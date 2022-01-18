@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { LearnersRoutingModule } from './learners-routing.module';
 import { LearnersComponent } from './learners.component';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 
 
 @NgModule({
   declarations: [
-    LearnersComponent
+    LearnersComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,
-    LearnersRoutingModule
+    LearnersRoutingModule,
+    
   ]
 })
 export class LearnersModule { }
