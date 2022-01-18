@@ -10,9 +10,10 @@ import html2canvas from 'html2canvas'; // Todavía no lo usamos
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
-  students! : any;
+  students!: any;
 
-  constructor(private serviceApi:StudentsAPIService) {
+
+  constructor(private serviceApi: StudentsAPIService) {
     this.downloadPDF()
   }
 
@@ -21,10 +22,26 @@ export class ReportComponent implements OnInit {
   }
 
   public downloadPDF(): void {
-    const doc = new jsPDF();
+    const pdfData: any = document.getElementById('pdf');
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
 
-    doc.text('Hello world!', 10, 10);
-    doc.save('hello-world.pdf');
+    html2canvas(pdfData, options).then((canvas) => {
+      const img = canvas.toDataURL('image/PNG');
+
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
+    });
   }
 
 }
