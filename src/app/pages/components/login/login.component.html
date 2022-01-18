@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="vh-100 bg-light container-form">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <img class="float-end m-5" src="assets/img/logoIBM.svg" alt="IBM Logo">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center mt-5">
+      <h1 class="text-center fw-bold mb-5">HYPATIA</h1>
+      <form class="m-3 p-3 pb-4 w-50 bg-primary">
+        <div class="form-group">
+          <label for="exampleInputEmail1" class="form-label mt-4 text-dark fw-bold">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" #user aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1" class="form-label mt-4 text-dark fw-bold">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" #pass>
+        </div>
+
+        <div class="form-group mt-3">
+          <button type="submit" class="btn btn-success float-end" (click)="login(user.value, pass.value)">Success</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
