@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsAPIService } from 'src/app/shared/services/students-api.service';
+
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas'; // Todavía no lo usamos
 
 @Component({
   selector: 'app-report',
