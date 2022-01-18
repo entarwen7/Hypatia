@@ -29,9 +29,6 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     //provideAuth(() => getAuth()),
     AngularFireAuthModule,
     HttpClientModule
-
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]
