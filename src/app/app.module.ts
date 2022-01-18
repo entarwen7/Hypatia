@@ -17,7 +17,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 @NgModule({
   declarations: [
     AppComponent,
-    LeaderViewComponent
+    //LeaderViewComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +28,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     //provideAuth(() => getAuth()),
     AngularFireAuthModule
 
-    
+
 
   ],
   providers: [],
