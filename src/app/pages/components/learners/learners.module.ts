@@ -15,6 +15,9 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
     CommonModule,
     LearnersRoutingModule,
     
+  ],
+  exports:[
+    SidenavComponent
   ]
 })
 export class LearnersModule { }
