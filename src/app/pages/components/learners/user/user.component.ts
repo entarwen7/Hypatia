@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  @Input() estudiante: any;
+
+  isVisible: boolean= false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showSelect(info: boolean){
+    this.isVisible = info;
   }
 
 }

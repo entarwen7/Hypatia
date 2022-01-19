@@ -12,38 +12,36 @@ export class ListUsersComponent implements OnInit {
   listUsers: any;
   listProyects: any;
   proyectsXUser: any;
-  isVisible: boolean= false;
-
+  
   constructor(private _firebaseService: FirestoreService) { }
-
+  
   ngOnInit(): void {
     this.getListUsers();
   }
-
+  
   getListUsers(){
     this._firebaseService.getLearners().subscribe(doc => {
-
+      
       this.listUsers = [];
       
       doc.forEach((element: any) => {
         this.proyectsXUser = [];
         element.payload.doc.data().proyecto.forEach((e: any) => {
+          e.get().then((data: any)=> console.log("snapshot",data.data()));
           const intersection = this.proyects.filter((ele: any) =>  ele.id === e.id);
           this.proyectsXUser.push(
             intersection.map((i:any) => i.nombre)
-          );
+            );
+          });
+          
+          this.listUsers.push({
+            id: element.payload.doc.id,
+            ...element.payload.doc.data(),
+            proyecto: this.proyectsXUser
+          });   
         });
-
-        this.listUsers.push({
-          id: element.payload.doc.id,
-          ...element.payload.doc.data(),
-          proyecto: this.proyectsXUser
-        });   
-      });
-    })
-  }
-
-  showSelect(info: boolean){
-    this.isVisible = info;
-  }
+      })
+    }
+    
+    
 }
