@@ -14,11 +14,12 @@ import { AngularFireModule } from '@angular/fire/compat';
 //  import { Observable } from 'rxjs';
 
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { SidenavComponent } from './pages/components/sidenav/sidenav.component';
+import { LearnersModule } from './pages/components/learners/learners.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    //LeaderViewComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +29,11 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     AngularFireModule.initializeApp(environment.firebase),
     //provideAuth(() => getAuth()),
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    LearnersModule
+
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

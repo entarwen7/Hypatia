@@ -13,7 +13,7 @@ export class ReportComponent implements OnInit {
   students!: any;
 
   constructor(private serviceApi:StudentsAPIService) {
-
+    //this.downloadPDF()
   }
 
   ngOnInit(): void {
