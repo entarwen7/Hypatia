@@ -5,15 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-//import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-//import { provideAuth, getAuth} from "@angular/fire/auth";
-//  import { Observable } from 'rxjs';
-
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
+
+
 
 @NgModule({
   declarations: [
@@ -24,12 +21,11 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    AngularFireModule.initializeApp(environment.firebase),
-    //provideAuth(() => getAuth()),
+    AngularFireModule.initializeApp(environment.firebase), 
     AngularFireAuthModule,
-    HttpClientModule
-
+    HttpClientModule,
+    AngularFirestoreModule,
+    
 
 
   ],
