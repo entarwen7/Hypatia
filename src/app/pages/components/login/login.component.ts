@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
   async login(user: string, pass: string) {
     try {
       await this.auth.login(user, pass);
-      alert("Validacion exitosa");
     } catch (e: any) {
       alert(e.message);
     }
   }
+
   initForm() {
     this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.pattern(this.isEmail)]],
@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
   get email() { return this.loginForm.get('email') };
   get pass() { return this.loginForm.get('pass') };
 
-  roles() {
-    this.auth.roles()
+  roles(id: string) {
+    this.auth.roles(id)
       .then((res: any) => {
-        console.log("Esta es la respuesta", res);
+        console.log("respuesta rol", res);
       })
       .catch((err) => {
         console.log("Algo anda mal", err);
@@ -50,10 +50,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.login(this.loginForm.value.email, this.loginForm.value.pass);
-    this.router.navigate(['learners']);
+    this.auth.verification().subscribe(auth=>{
+      if(auth){
+        this.roles(auth.uid)
+        console.log(auth.uid)
+        this.router.navigate(['learners']);
+       }else{
+         console.log('no hay usuario activo')
+       }
+    })
     /*
-    //this.auth.verification()
     console.log('userid:', this.auth.id)
 
     if (this.auth.id !== null) {
