@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 //import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 //import { provideAuth, getAuth} from "@angular/fire/auth";
 //  import { Observable } from 'rxjs';
@@ -29,12 +30,9 @@ import { LearnersModule } from './pages/components/learners/learners.module';
     AngularFireModule.initializeApp(environment.firebase),
     //provideAuth(() => getAuth()),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     HttpClientModule,
     LearnersModule
-
-
-
-
   ],
 
   providers: [],
