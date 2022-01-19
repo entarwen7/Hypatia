@@ -12,10 +12,13 @@ export class AuthServiceService {
   }
 
   verification() {
-    return this.auth.authState.subscribe((user: any) => {
-      console.log('servise id: ', user.uid)
-      this.id = user.uid
-    })
+    return this.auth.authState.subscribe(res => {
+      if (res && res.uid) {
+        console.log('user is logged in', res.uid);
+      } else {
+        console.log('user not logged in');
+      }
+    });
   }
 
   login(user: string, pass: string) {
@@ -30,8 +33,8 @@ export class AuthServiceService {
     });
   }
 
-  logOut(){
-     return this.auth.signOut();
-   }
+  logOut() {
+    return this.auth.signOut();
+  }
 
 }
