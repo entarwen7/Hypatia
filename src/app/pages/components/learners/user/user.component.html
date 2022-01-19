@@ -1,23 +1,30 @@
-<!-- <th scope="row">{{estudiante.nombre}} {{estudiante.apellido}}</th>
-<td>{{estudiante.correo}}</td>
-<td>{{estudiante.proyecto}}</td>
-<td>
+<div class="row p-2">
+  <div class="col-md-2">
+    <p>{{estudiante.nombre}} {{estudiante.apellido}}</p>
+  </div>
+  <div class="col-md-2">
+    <p>{{estudiante.correo}}</p>
+  </div>
+  <div class="col-md-2">
+    <p>{{estudiante.proyecto}}</p>
+  </div>
+  <div class="col-md-4">
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group me-2" role="group" aria-label="First group">
-          <button *ngIf="!isVisible" (click)="showSelect(true)" type="button" class="btn btn-primary">Añadir</button>
-          <select *ngIf="isVisible" class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-          <button type="button" class="btn btn-primary">Modificar</button>
-          <button type="button" class="btn btn-primary">Eliminar</button>
-        </div>
-    </div>
-</td>
-<td>
+      <div class="btn-group me-2" role="group" aria-label="First group">
+        <button *ngIf="!isVisible" (click)="showSelect(true)" type="button" class="btn btn-primary">Añadir</button>
+        <select *ngIf="isVisible" class="form-select" aria-label="Default select example">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        <button type="button" class="btn btn-primary">Eliminar</button>
+      </div>
+  </div>
+  </div>
+  <div class="col-md-2">
     <div class="btn-group" role="group" aria-label="Third group">
       <button routerLink="/report"type="button" class="btn btn-info">Ver reporte</button>
     </div>
-</td> -->
+  </div>
+</div>
