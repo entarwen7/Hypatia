@@ -1,0 +1,46 @@
+<div >
+  <div class="intro vh-100 ">
+      <div></div>
+    <div class="table-responsive pt-5 ">
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Email</th>
+            <th scope="col">Proyecto actual</th>
+            <th scope="col">Proyecto</th>
+            <th scope="col">Reporte</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estudiante of listUsers" class="table-info" >
+              <!-- <app-user></app-user> -->
+            <th scope="row">{{estudiante.nombre}} {{estudiante.apellido}}</th>
+            <td>{{estudiante.correo}}</td>
+            <td>{{estudiante.proyecto}}</td>
+            <td>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                      <button *ngIf="!isVisible" (click)="showSelect(true)" type="button" class="btn btn-primary">Añadir</button>
+                      <select *ngIf="isVisible" class="form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                      <button type="button" class="btn btn-primary">Modificar</button>
+                      <button type="button" class="btn btn-primary">Eliminar</button>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Third group">
+                  <button routerLink="/report"type="button" class="btn btn-info">Ver reporte</button>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
