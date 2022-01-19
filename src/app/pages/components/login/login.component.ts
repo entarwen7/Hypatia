@@ -19,6 +19,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.auth.verification().subscribe(auth=>{
+      if(auth){
+        this.router.navigate(['learners']);
+       }
+    })
   }
 
   async login(user: string, pass: string) {

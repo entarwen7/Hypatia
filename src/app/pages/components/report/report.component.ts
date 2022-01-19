@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentsAPIService } from 'src/app/shared/services/students-api.service';
+import { Router } from '@angular/router';
 
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas'; // Todavía no lo usamos
+import html2canvas from 'html2canvas';
+
+import { AuthServiceService } from 'src/app/./shared/services/auth-service.service';
 
 @Component({
   selector: 'app-report',
@@ -12,9 +15,14 @@ import html2canvas from 'html2canvas'; // Todavía no lo usamos
 export class ReportComponent implements OnInit {
   students! : any;
 
-  constructor(private serviceApi:StudentsAPIService) {  }
+  constructor(private serviceApi:StudentsAPIService, private auth: AuthServiceService, private router: Router) {  }
 
   ngOnInit(): void {
+    this.auth.verification().subscribe(auth=>{
+      if(!auth){
+        this.router.navigate(['login']);
+       }
+    })
     this.students = this.serviceApi.getData()
   }
 
