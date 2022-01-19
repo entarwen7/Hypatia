@@ -1,0 +1,29 @@
+<div >
+  <div class="intro vh-100 ">
+      <div></div>
+    <div class="table-responsive pt-5 ">
+
+      <div class="row bg-dark p-2">
+        <div class="col-md-2">
+          <h5>Nombre</h5>
+        </div>
+        <div class="col-md-2">
+          <h5>Email</h5>
+        </div>
+        <div class="col-md-2">
+          <h5>Proyecto Actual</h5>
+        </div>
+        <div class="col-md-4">
+          <h5>Proyecto</h5>
+        </div>
+        <div class="col-md-2">
+          <h5>Reporte</h5>
+        </div>
+      </div>
+      <div *ngFor="let estudiante of listUsers">
+        <app-user [estudiante]="estudiante"></app-user>
+      </div>
+
+    </div>
+  </div>
+</div>

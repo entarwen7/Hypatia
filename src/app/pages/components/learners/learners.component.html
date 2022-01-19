@@ -1,25 +1,28 @@
 <div class="container-learners vh-100">
     <div class="container-intro">
-            <div class="intro container-fluid">
-                <div class="row  justify-content-md-end">
-                    <div class="rol col-sm-12">
-                        <div class="icon-rol">
-                        </div>
-                        <p>Lider</p>
+        <div class="intro container-fluid">
+            <div *ngIf="!showData" class="row  justify-content-md-end">
+                <div class="rol col-sm-12">
+                    <div class="icon-rol">
                     </div>
-                    <div class="container-info col-12  ">
-                        <div class="small-content-info align-items-center">
-                            <div class="mgs-info " >
-                                <h2>BIENVENIDOS !</h2>
-                                <p>Conoce la historia detras de HYPATIA</p>
-                                <button type="button" class="btn btn-primary">Primary</button>
-                            </div>
-                            <div>
-                                <img src="../../../../assets/img/hypatias3.png" alt="imagen hypatia">
-                            </div>
+                    <p>Lider</p>
+                </div>
+                <div class="container-info col-12  ">
+                    <div class="small-content-info align-items-center">
+                        <div class="mgs-info " >
+                            <h2>BIENVENIDOS !</h2>
+                            <p>Conoce la historia detras de HYPATIA</p>
+                            <button type="button" class="btn btn-primary" (click)="showTable(true)">Ver aprendices</button>
+                        </div>
+                        <div>
+                            <img src="../../../../assets/img/hypatias3.png" alt="imagen hypatia">
                         </div>
                     </div>
                 </div>
             </div>
+            <div *ngIf="showData">
+                <app-list-users [proyects]="listProyects"></app-list-users>
+            </div>
+        </div>
     </div>
 </div>
