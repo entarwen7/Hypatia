@@ -12,13 +12,10 @@ import html2canvas from 'html2canvas'; // Todavía no lo usamos
 export class ReportComponent implements OnInit {
   students! : any;
 
-  constructor(private serviceApi:StudentsAPIService) {
-    //this.downloadPDF()
-  }
+  constructor(private serviceApi:StudentsAPIService) {  }
 
   ngOnInit(): void {
     this.students = this.serviceApi.getData()
-    this.downloadPDF()
   }
 
   public downloadPDF() {
@@ -44,6 +41,10 @@ export class ReportComponent implements OnInit {
     }).then((docResult) => {
       docResult.save(`${new Date().toISOString()}_studentName.pdf`);
     });
+  }
+
+  onClick(){
+    this.downloadPDF()
   }
 
 }

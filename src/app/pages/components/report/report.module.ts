@@ -14,17 +14,11 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     CommonModule,
     ReportRoutingModule,
     NgCircleProgressModule.forRoot({
-      "radius": 60,
       "space": 5,
-      "outerStrokeWidth": 5,
-      "outerStrokeColor": "#76C2AF",
-      "innerStrokeColor": "#ffffff",
-      "innerStrokeWidth": 6,
-      "imageSrc": "assets/img/user.svg",
-      "imageHeight": 105,
-      "imageWidth": 105,
-      "showImage": true,
-      "showBackground": false})
+      "showBackground": false,
+      "unitsFontSize": "30",
+      "titleFontSize": "35",
+      "responsive": true})
     ]
 })
 export class ReportModule { }
