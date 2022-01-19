@@ -6,19 +6,34 @@
   </div>
   <div class="row">
     <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-        <img class="float-end m-2 logo-hyp" src="assets/img/logoHypatia.svg" alt="IBM Logo">
-      <form class="m-3 p-3 pb-4 w-50 border border-primary">
+      <img class="float-end m-2 logo-hyp" src="assets/img/logoHypatia.svg" alt="IBM Logo">
+      <form class="m-3 p-3 pb-4 w-50 border border-primary" [formGroup]="loginForm" (ngSubmit)=onSubmit()>
         <div class="form-group">
           <label for="exampleInputEmail1" class="form-label mt-4 text-dark fw-bold">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" #user aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" formControlName='email'
+            [ngClass]="{'is-invalid': email?.invalid && (email?.dirty || email?.touched)}" class="form-control"
+            id="exampleInputEmail1" #user aria-describedby="emailHelp" placeholder="Enter email">
+          <div class="invalid-feedback" *ngIf="email?.errors?.required!">
+            Please enter a email.
+          </div>
+          <div class="invalid-feedback" *ngIf="email?.errors?.pattern!">
+            The email format is invalid.
+          </div>
+
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1" class="form-label mt-4 text-dark fw-bold">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" #pass>
+          <input type="password" formControlName='pass'
+            [ngClass]="{'is-invalid': pass?.invalid && (pass?.dirty || pass?.touched)}" class="form-control"
+            id="exampleInputPassword1" placeholder="Password" #pas>
+          <div class="invalid-feedback" *ngIf="pass?.errors?.required!">
+            Please enter a email.
+          </div>
         </div>
 
         <div class="form-group mt-3">
-          <button type="submit" class="btn btn-primary float-end" (click)="login(user.value, pass.value)">Success</button>
+          <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success float-end"
+            (click)="roles()">Success</button>
         </div>
 
       </form>
