@@ -28,6 +28,7 @@ export class ListUsersComponent implements OnInit {
       doc.forEach((element: any) => {
         this.proyectsXUser = [];
         element.payload.doc.data().proyecto.forEach((e: any) => {
+          e.get().then((data: any)=> console.log("snapshot",data.data()));
           const intersection = this.proyects.filter((ele: any) =>  ele.id === e.id);
           this.proyectsXUser.push(
             intersection.map((i:any) => i.nombre)
