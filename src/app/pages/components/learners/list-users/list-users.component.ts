@@ -17,27 +17,39 @@ export class ListUsersComponent implements OnInit {
   bifurcation: any;
   idProyect: string | undefined;
   selectProyect: string = "";
-  newProyect: string = "";
+  newProyect: string = "Holi";
   linkUser: string = "";
-
   constructor(private _firebaseService: FirestoreService) { }
 
   ngOnInit(): void {
     this.getListUsers();
     this._firebaseService.getAddProject().subscribe(data => {
-      console.log("Seleccione: ",data); //retorna datos del proyecto
-      this.selectProyect = data;
+      
+      const asociateUser = this.proyects.filter((e: any) =>  e.id === data[0]);
+      console.log("este es el PROYECTO",this.newProyect, "   -----  ", data,asociateUser, 'asociado\n ');
+      this.newProyect = asociateUser[0].id;
+      console.log(asociateUser[0].id);
+      this.selectProyect = data[0];
       setTimeout(() => {
-        this.editProyect(data); 
+        if (data[1] == 'update') {
+          this.editProyect(this.selectProyect); 
+        } else {
+          this.deleteProyect(this.selectProyect); 
+        }
       }, 10);
     });
 
     this._firebaseService.getAddUsers().subscribe(data => {
-      console.log("Aqui deberia mostrar los usuarios ",data);
-      this.newProyect = this.selectProyect;
-      this.linkUser = data.id;
+      console.log('\n\nAqui deberia mostrar los usuarios ',data[0].id);
+      this.linkUser = data[0].id;
+      const asociateProyect = this.proyects.filter((e: any) =>  e.nombre === data[0])
+      console.log("USUARIO ASOCIADOOOO",this.linkUser)
       setTimeout(() => {
-        this.editUser(data.id);
+        if (data[1] == 'update') {
+          this.editUser(this.linkUser);
+        } else {
+          this.deleteUser(this.linkUser);
+        }
       }, 10);
     })
   }
@@ -66,10 +78,10 @@ export class ListUsersComponent implements OnInit {
     })
   }
 
-  updateUser(user: any){
+  /* updateUser(user: any){
     this._firebaseService.addUsers(user);
   }
-
+ */
   editProyect(id: string){
     console.log("id a actualizar", id)
     this._firebaseService.saveProyect(id, this.linkUser)
@@ -80,11 +92,28 @@ export class ListUsersComponent implements OnInit {
 
   editUser(id: string){
     console.log("id usuario a actualizar",id);
-    this._firebaseService.editUser(id, this.selectProyect)
+    this._firebaseService.editUser(id, this.newProyect)
     .then(() => {
 
     })
   }
+
+  deleteProyect(id: string){
+    console.log("id a actualizar", id)
+    this._firebaseService.deleteProyect(id, this.linkUser)
+    .then(() => {
+
+    })
+  }
+
+  deleteUser(id: string){
+    console.log("id usuario a actualizar",id);
+    this._firebaseService.deleteUser(id, this.newProyect)
+    .then(() => {
+
+    })
+  }
+
 }
 
 

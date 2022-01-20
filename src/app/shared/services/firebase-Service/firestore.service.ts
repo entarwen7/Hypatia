@@ -24,16 +24,16 @@ export class FirestoreService {
     return this.firebase.collection('proyectos').snapshotChanges();
   }
 
-  addProject(project:any){
-    this.project$.next(project);
+  addProject(project:any, metodo: any){
+    this.project$.next([project,metodo]);
   }
 
   getAddProject():Observable<any>{
     return this.project$.asObservable();
   }
 
-  addUsers(users:any){
-    this.users$.next(users); // toma user
+  addUsers(users:any, metodo: any){
+    this.users$.next([users,metodo]); // toma user
   }
 
   getAddUsers():Observable<any>{
@@ -41,13 +41,26 @@ export class FirestoreService {
   }
 
   saveProyect(id:any,data:any): Promise<any>{
-    console.log("Este es el id que voy a actualizar", id, "esta es la data que voy a actualizar", data);
+    /* console.log("Este es el id que voy a actualizar", id, "esta es la data que voy a actualizar", data); */
     return this.firebase.collection('proyectos').doc(id)
       .update({estudiantes: firestore.arrayUnion(data)});
   }
 
   editUser(id:any, user:any): Promise<any>{
+    console.log("USUARIOS EDITAR Este es el id que voy a actualizar", id, "esta es la data que voy a actualizar", user);
     return this.firebase.collection('usuarios').doc(id)
       .update({proyecto: firestore.arrayUnion(user)});
+  }
+
+  deleteProyect(id:any,data:any): Promise<any>{
+    console.log("PROYECTOS Este es el id que voy a actualizar", id, "esta es la data que voy a actualizar", data, firestore.arrayRemove(data));
+    return this.firebase.collection('proyectos').doc(id)
+      .update({estudiantes: firestore.arrayRemove(data)});
+  }
+
+  deleteUser(id:any, user:any): Promise<any>{
+    console.log("USUARIOS Este es el id que voy a actualizar", id, "esta es la data que voy a actualizar", user);
+    return this.firebase.collection('usuarios').doc(id)
+      .update({proyecto: firestore.arrayRemove(user)});
   }
 }
