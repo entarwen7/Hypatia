@@ -15,13 +15,16 @@ export class ListUsersComponent implements OnInit {
   proyectsXUser: any;
   allProjects:any;
   bifurcation:any;
-  
+  idProyect:string | undefined;
+  selectProyect:string | undefined
   constructor(private _firebaseService: FirestoreService) { }
   
   ngOnInit(): void {
     this.getListUsers();
-    // this.getProjetc();
-    this._firebaseService.getAddProject().subscribe(data=> console.log("ver data",data));
+    this._firebaseService.getAddProject().subscribe(data=> {
+    this.selectProyect = data;
+    this.updateProyect(this.selectProyect);
+    });
   }
   
   getListUsers(){
@@ -33,26 +36,43 @@ export class ListUsersComponent implements OnInit {
         this.proyectsXUser = [];
       
         element.payload.doc.data().proyecto.forEach((e: any) => {
-          e.get().then((data: any)=> console.log("snapshot",data.data()));
-          const intersection = this.proyects.filter((ele: any) =>  ele.id === e.id);
+          console.log("eeeee",e);
+          const intersection = this.proyects.filter((ele: any) =>  ele.id === e);
+          console.log(intersection);
           this.bifurcation= this.proyects.filter((ele: any) =>  ele.id !== e.id);
-          console.log("bifurcation",this.bifurcation)
-          this.proyectsXUser.push(
-            intersection.map((i:any) => i.nombre)
-
-            );
+          this.proyectsXUser.push(intersection);
           });
           
           this.listUsers.push({
             id: element.payload.doc.id,
             ...element.payload.doc.data(),
             proyecto: this.proyectsXUser
-          });   
+          }); 
+          
         });
       })
     }
+    updateProyect(id:any){
+      this.listUsers.forEach((el:any) => {
+        el.proyecto.map((e:any)=>{
+          if (e[0] !== id) {
+            el.push(this.selectProyect);
+            console.log("ggggggggggggg",el);
+          }else{
+          this.getListUsers();
+          } 
+        })
+     });
+    this._firebaseService.saveProyect(id ,this.listUsers).then((res)=>{
+      console.log("elll", res);
+    })
+    .catch((err)=>{
+      console.log("algo anda mal",err);
+      
+    })
+     }
 
+    }
 
     
-    
-}
+

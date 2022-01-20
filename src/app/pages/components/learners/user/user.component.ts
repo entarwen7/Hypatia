@@ -19,6 +19,10 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("user bifur", this.bifurcation)
+    this.estudiante.proyecto.map((e:any)=>{
+      console.log(e[0].nombre);
+    });
+    
   }
 
   showSelect(info: boolean){

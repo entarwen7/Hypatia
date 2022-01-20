@@ -29,4 +29,7 @@ export class FirestoreService {
   getAddProject():Observable<any>{
     return this.project$.asObservable();
   }
+  saveProyect(id:any,data:any): Promise<any>{
+   return this.firebase.collection('usuarios').doc(id).update(data)
+  }
 }

@@ -6,7 +6,7 @@
     <p>{{estudiante.correo}}</p>
   </div>
   <div class="col-md-2">
-    <p>{{estudiante.proyecto}}</p>
+    <p *ngFor="let nameP of estudiante.proyecto">{{nameP[0].nombre}}</p>
   </div>
   <div class="col-md-4">
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -28,4 +28,3 @@
     </div>
   </div>
 </div>
-<p>{{targetvalue}}holi</p>
