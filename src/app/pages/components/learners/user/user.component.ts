@@ -11,6 +11,7 @@ export class UserComponent implements OnInit {
   @Input() bifurcation:any;
 
   isVisible: boolean= false;
+  isVisibleDelete: boolean= false;
   targetvalue:any;
 
   constructor(private _firebaseService: FirestoreService) {
@@ -18,21 +19,25 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log("user bifur", this.bifurcation)
-    this.estudiante.proyecto.map((e:any)=>{
-      console.log(e[0].nombre);
-    });
-
   }
 
   showSelect(info: boolean){
     this.isVisible = info;
   }
 
-  addProject(event:any){
+  showSelectDelete(info: boolean){
+    this.isVisibleDelete = info;
+  }
+
+  addProject(event:any, name: any){
     this.targetvalue = event.target.value;
-    console.log("select", this.targetvalue);
-    this._firebaseService.addProject(this.targetvalue);
+    console.log("Emite este valor", this.targetvalue);
+    this._firebaseService.addProject(this.targetvalue, name);
+  }
+
+  editLearner(estudiante: any, name: string){
+    console.info("Emite este estudiante", estudiante);
+    this._firebaseService.addUsers(estudiante, name);
   }
 
   onClick(estudiante: any){
