@@ -18,14 +18,15 @@ export class LearnersComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.verification().subscribe(auth => {
-      if(!auth){
+      if (!auth) {
         this.router.navigate(['login']);
-       }
-  })
-  this.getProyects();
-}
+      }
+    })
+    //console.log(this.listProyects)
+    this.getProyects();
+  }
 
-  showTable(isShow: any){
+  showTable(isShow: any) {
     this.showData = isShow;
   }
 

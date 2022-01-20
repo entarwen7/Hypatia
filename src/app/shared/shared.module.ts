@@ -4,12 +4,14 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './components/header/header.component';
 import { LearnersModule } from '../pages/components/learners/learners.module';
+import { FilterProyectPipe } from './pipes/filter-proyect.pipe';
 
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    FilterProyectPipe
 
   ],
   imports: [
@@ -19,7 +21,8 @@ import { LearnersModule } from '../pages/components/learners/learners.module';
   ],
   exports: [
     HeaderComponent,
-    RouterModule
+    RouterModule,
+    FilterProyectPipe
   ]
 })
 export class SharedModule { }

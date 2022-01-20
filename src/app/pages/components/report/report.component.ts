@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentsAPIService } from 'src/app/shared/services/students-api.service';
 import { Router } from '@angular/router';
 
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 import { AuthServiceService } from 'src/app/./shared/services/auth-service.service';
+import { FirestoreService } from 'src/app/shared/services/firebase-Service/firestore.service';
 
 @Component({
   selector: 'app-report',
@@ -13,17 +13,32 @@ import { AuthServiceService } from 'src/app/./shared/services/auth-service.servi
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
-  students!: any;
+  students! : any;
+  learners$ = this._firebaseService.getCurrentStudent$()
+  path$ = this._firebaseService.paths
+  user = this._firebaseService.user
+  proyects: any
+  dateFilterToPipe: any = ''
 
-  constructor(private serviceApi:StudentsAPIService, private auth: AuthServiceService, private router: Router) {  }
+
+  constructor(private auth: AuthServiceService,
+              private router: Router,
+              private _firebaseService: FirestoreService) {  }
+
+
 
   ngOnInit(): void {
-    this.auth.verification().subscribe((auth: any)=>{
+    this._firebaseService.proyectos.subscribe((res: any) => {
+      this.proyects = res
+    })
+
+    //this.proyects.subscribe((res: any) => console.log('poy: ', res))
+    this.auth.verification().subscribe(auth=>{
       if(!auth){
         this.router.navigate(['login']);
        }
     })
-    this.students = this.serviceApi.getData()
+    this.students = this._firebaseService.user
   }
 
   public downloadPDF() {
