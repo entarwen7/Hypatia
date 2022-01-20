@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
+  private project$ = new Subject<any>();
 
   constructor(private firebase: AngularFirestore) { }
 
@@ -19,5 +20,13 @@ export class FirestoreService {
 
   getProyects(): Observable<any>{
     return this.firebase.collection('proyectos').snapshotChanges();
+  }
+
+  addProject(project:any){
+    this.project$.next(project);
+  }
+
+  getAddProject():Observable<any>{
+    return this.project$.asObservable();
   }
 }
