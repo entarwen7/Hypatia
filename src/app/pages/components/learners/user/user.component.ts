@@ -18,11 +18,6 @@ export class UserComponent implements OnInit {
   
 
   ngOnInit(): void {
-    console.log("user bifur", this.bifurcation)
-    this.estudiante.proyecto.map((e:any)=>{
-      console.log(e[0].nombre);
-    });
-    
   }
 
   showSelect(info: boolean){
@@ -33,6 +28,10 @@ export class UserComponent implements OnInit {
     this.targetvalue = event.target.value;
     console.log("select", this.targetvalue);
     this._firebaseService.addProject(this.targetvalue);
+  }
+
+  editLearner(estudiante: any){
+    this._firebaseService.addUsers(estudiante);
   }
     
 }
