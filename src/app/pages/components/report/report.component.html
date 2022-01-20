@@ -1,1 +1,97 @@
-<p>report works!</p>
+<main class="bg-light p-2 pt-0" id="pdf">
+  <div class="row">
+    <div class="col-md-12 bg-light title p-0 ms-1">
+      <h2 class="p-5 text-center fw-bold ">Hypatia</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 d-flex flex-wrap justify-content-evenly align-items-center p-5">
+      <div>
+        <circle-progress  [percent]="65" [radius]="60" [outerStrokeWidth]="4.5" [innerStrokeWidth]="2" [outerStrokeColor]="'#367BA5'" [innerStrokeColor]="'#7495A5'" [animation]="true" [animationDuration]="300">
+        </circle-progress>
+      </div>
+      <div>
+        <h4>Alejandra Rincón</h4>
+        <p>Practicante</p>
+        <p>ID:51236455</p>
+        <p>Diseño industrial</p>
+      </div>
+    </div>
+  </div>
+  <div class="row bg-phase m-3 p-5">
+    <div class="row ">
+      <div class="col-md-12 text-center">
+        <h4 class="text-primary">
+          <strong>Etapa:</strong> <span>Fase 2</span>
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 ">
+        <p class="p-3 pb-0">Formación:</p>
+      </div>
+      <div class="col-6">
+        <p class="float-end p-3 pb-0">PATH</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5 progress p-0 bg-progress">
+        <div class="progress-bar border rounded-pill" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="col-2 progress p-0 bg-progress">
+        <div class="progress-bar border rounded-pill" role="progressbar" style="width: 60%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="col-5 progress p-0 bg-progress">
+        <div class="progress-bar border rounded-pill" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <p class="float-end">CL</p>
+      </div>
+      <div class="col-2">
+        <p class="float-end">LT</p>
+      </div>
+      <div class="col-5">
+        <p class="float-end">PT</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 mt-3">
+        <p>Horas Proyectadas:</p>
+        <p class="ms-3">200h</p>
+      </div>
+      <div class="col-sm-6 mt-3">
+        <p>Horas Proyectadas:</p>
+        <p class="ms-3">200h</p>
+      </div>
+    </div>
+    <div class="row">
+      <p class="mt-3">Cumplimientos de Fecha:</p>
+      <div class="d-flex flex-wrap justify-content-around">
+        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill text-success me-2" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="8" />
+          </svg>CL 02/09/2021</p>
+        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill text-warning me-2" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="8" />
+          </svg>LT 11/11/2021</p>
+        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill text-info me-2" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="8" />
+          </svg>PT 20/12/2021</p>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-sm-6">
+        <p>Proyectos:</p>
+        <p class="ms-2">Fondo de empleados</p>
+        <p class="ms-2">Hypatia</p>
+      </div>
+      <div class="col-sm-6">
+        <p>Estado Parcticante:</p>
+        <p class="ms-2">En proceso de conversión a regular</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<button type="button" class="btn btn-primary" (click)="onClick()">Descargar</button>

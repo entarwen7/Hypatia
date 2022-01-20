@@ -1,1 +1,17 @@
-<p>header works!</p>
+<nav *ngIf="isLogin">
+  <h1 class="text-center mt-5 mb-5">HYPATIA</h1>
+  <div class="d-flex align-items-start mt-5">
+    <div class="nav flex-column nav-pills w-100 mt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <h6 class="fw-bold ms-3 text-light">PHATS</h6>
+      <a class="nav-link ps-4 disabled" id="v-pills-report-g-tab" role="tab">Reporte General</a>
+      <a class="nav-link text-light ps-4" id="v-pills-report-a-tab" role="tab" routerLink="/report" routerLinkActive="active">Reporte estudiantil</a>
+      <h6 class="fw-bold ms-3 text-light mt-4">INFORMACION</h6>
+      <a class="nav-link text-light ps-4" id="v-pills-learners-tab" role="tab" routerLink="/learners" routerLinkActive="active">Aprendices</a>
+      <a class="nav-link ps-4 disabled" id="v-pills-paths-tab" role="tab">Paths</a>
+      <a class="nav-link ps-4 disabled" id="v-pills-cursos-tab" role="tab">Cursos</a>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-secondary mt-5" (click)="onClick()">Logout</button>
+  </div>
+</nav>
