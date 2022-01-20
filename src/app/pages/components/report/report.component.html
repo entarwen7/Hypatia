@@ -33,7 +33,7 @@
     <div class="row">
       <div class="col-md-12 d-flex flex-wrap justify-content-evenly align-items-center p-5">
         <div>
-          <circle-progress [percent]="65" [radius]="60" [outerStrokeWidth]="4.5" [innerStrokeWidth]="2" [outerStrokeColor]="'#367BA5'" [innerStrokeColor]="'#7495A5'" [animation]="true" [animationDuration]="300">
+          <circle-progress [percent]="students.porcentaje_finalizado" [radius]="60" [outerStrokeWidth]="4.5" [innerStrokeWidth]="2" [outerStrokeColor]="'#367BA5'" [innerStrokeColor]="'#7495A5'" [animation]="true" [animationDuration]="300">
           </circle-progress>
         </div>
         <div>
@@ -107,10 +107,9 @@
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-sm-6">
+        <div class="col-sm-6" *ngFor="let item of proyects | async">
           <p>Proyectos:</p>
-          <p class="ms-2">Fondo de empleados</p>
-          <p class="ms-2">Hypatia</p>
+          <p class="ms-2">{{item}}</p>
         </div>
         <div class="col-sm-6">
           <p>Estado Parcticante:</p>
@@ -119,7 +118,8 @@
       </div>
     </div>
   </div>
-
+  <div class="d-flex justify-content-evenly m-3">
+    <button type="button" class="btn btn-primary" (click)="onClick()">Descargar</button>
+    <button type="button" class="btn btn-info" routerLink="/learners">Regresar</button>
+  </div>
 </main>
-
-<button type="button" class="btn btn-primary" (click)="onClick()">Descargar</button>

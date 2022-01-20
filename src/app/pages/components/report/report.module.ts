@@ -5,6 +5,8 @@ import { ReportRoutingModule } from './report-routing.module';
 import { ReportComponent } from './report.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
+import { SharedModule } from '../../../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       "showBackground": false,
       "unitsFontSize": "30",
       "titleFontSize": "35",
-      "responsive": true})
-    ]
+      "responsive": true}),
+    SharedModule
+  ],
+
 })
 export class ReportModule { }

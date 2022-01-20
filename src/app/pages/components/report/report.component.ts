@@ -15,29 +15,25 @@ import { FirestoreService } from 'src/app/shared/services/firebase-Service/fires
 })
 export class ReportComponent implements OnInit {
   students! : any;
+  learners$ = this._firebaseService.getCurrentStudent$()
+  path$ = this._firebaseService.paths
+  user = this._firebaseService.user
+  proyects = this._firebaseService.proyectos
+  dateFilterToPipe: any = ''
 
   constructor(private serviceApi:StudentsAPIService,
               private auth: AuthServiceService,
               private router: Router,
               private _firebaseService: FirestoreService) {  }
 
-  learners$ = this._firebaseService.getCurrentStudent$()
-  path$ = this._firebaseService.paths
-  user = this._firebaseService.user
-  proyects = this._firebaseService.proyectos
-  proyects2: any
+
 
   ngOnInit(): void {
-    /*
-    this.proyects.estudiantes.forEach((el: any) => {
-      if(el === this._firebaseService.user.id){
-        this.proyects2.push(this.proyects)
-      }
-    })*/
+    this.learners$.subscribe((res: any) => console.log('user: ', res.proyecto))
 
-    //this.proyects.subscribe(res => console.log('poy: ', res))
+    this.proyects.subscribe((res: any) => console.log('poy: ', res))
     //console.log('id proy: ', this.proyects)
-    console.log('id user: ', this._firebaseService.user.id)
+    //console.log('id user: ', this.learners$)
     this.auth.verification().subscribe(auth=>{
       if(!auth){
         this.router.navigate(['login']);
