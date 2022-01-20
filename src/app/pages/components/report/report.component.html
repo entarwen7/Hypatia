@@ -107,9 +107,9 @@
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-sm-6" *ngFor="let item of proyects | async">
+        <div class="col-sm-6" >
           <p>Proyectos:</p>
-          <p class="ms-2">{{item}}</p>
+          <app-proyects [item]="item" *ngFor="let item of proyects"></app-proyects>
         </div>
         <div class="col-sm-6">
           <p>Estado Parcticante:</p>

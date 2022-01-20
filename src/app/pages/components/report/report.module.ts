@@ -6,11 +6,13 @@ import { ReportComponent } from './report.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { SharedModule } from '../../../shared/shared.module';
+import { ProyectsComponent } from './proyects/proyects.component';
 
 
 @NgModule({
   declarations: [
-    ReportComponent
+    ReportComponent,
+    ProyectsComponent
   ],
   imports: [
     CommonModule,

@@ -5,8 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterProyectPipe implements PipeTransform {
 
-  transform(value: any, ...args: any): any {
-    return console.log('value pipe: ', value)
+  transform(value: any, args: any): any {
+    const result: any[] = []
+    for(let item of value){
+      if(item === args){
+          result.push(item)
+        }
+    }
+    return result
   }
 
 }

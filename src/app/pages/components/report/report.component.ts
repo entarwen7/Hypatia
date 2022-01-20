@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentsAPIService } from 'src/app/shared/services/students-api.service';
 import { Router } from '@angular/router';
 
 import jsPDF from 'jspdf';
@@ -18,22 +17,22 @@ export class ReportComponent implements OnInit {
   learners$ = this._firebaseService.getCurrentStudent$()
   path$ = this._firebaseService.paths
   user = this._firebaseService.user
-  proyects = this._firebaseService.proyectos
+  proyects: any
   dateFilterToPipe: any = ''
 
-  constructor(private serviceApi:StudentsAPIService,
-              private auth: AuthServiceService,
+
+  constructor(private auth: AuthServiceService,
               private router: Router,
               private _firebaseService: FirestoreService) {  }
 
 
 
   ngOnInit(): void {
-    this.learners$.subscribe((res: any) => console.log('user: ', res.proyecto))
+    this._firebaseService.proyectos.subscribe((res: any) => {
+      this.proyects = res
+    })
 
-    this.proyects.subscribe((res: any) => console.log('poy: ', res))
-    //console.log('id proy: ', this.proyects)
-    //console.log('id user: ', this.learners$)
+    //this.proyects.subscribe((res: any) => console.log('poy: ', res))
     this.auth.verification().subscribe(auth=>{
       if(!auth){
         this.router.navigate(['login']);
