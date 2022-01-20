@@ -1,23 +1,56 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
+  user: any;
+  listado: any;
+  paths: any;
+  proyectos: any
 
-  constructor(private firebase: AngularFirestore) { }
+  constructor(private firebase: AngularFirestore) {
+    this.getListado()
+    this.getPaths()
+    this.getProyects2()
+   }
 
-  getUsers(): Observable<any>{
-    return this.firebase.collection('listado').snapshotChanges();
-  }
-
-  getLearners(): Observable<any>{
+  getLearners(): Observable<any> {
     return this.firebase.collection('usuarios').snapshotChanges();
   }
 
-  getProyects(): Observable<any>{
+  getProyects(): Observable<any> {
     return this.firebase.collection('proyectos').snapshotChanges();
   }
+
+  private getProyects2(): void {
+    this.proyectos = this.firebase.collection('proyectos').snapshotChanges().pipe(
+      map(actions => actions.map(el => el.payload.doc.data() as any)),
+    )
+  }
+
+  private getListado(): void {
+    this.listado = this.firebase.collection('listado').snapshotChanges().pipe(
+      map(actions => actions.map(el => el.payload.doc.data() as any)),
+    )
+  }
+
+  private getPaths(): void {
+    this.paths = this.firebase.collection('paths').snapshotChanges().pipe(
+      map(actions => actions.map(el => el.payload.doc.data() as any)),
+    )
+  }
+
+  getCurrentStudent$(): Observable<any>{
+    return this.listado.pipe(map((data: any) => data.filter((el: any) => el.usuario.id_usuario === this.user.id)));
+  }
+
+  //no sirvio
+  getCurrentProyect$(): Observable<any>{
+    return this.proyectos.pipe(map((data: any) => data.filter((el: any) => el.estudiantes.filter((element: any)=> element === this.user.id))));
+  }
+
 }

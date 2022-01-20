@@ -17,15 +17,16 @@ export class LearnersComponent implements OnInit {
   constructor(private _firebaseService: FirestoreService, private auth: AuthServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.verification().subscribe(auth=>{
-      if(!auth){
+    this.auth.verification().subscribe(auth => {
+      if (!auth) {
         this.router.navigate(['login']);
-       }
-  })
-  this.getProyects();
-}
+      }
+    })
+    //console.log(this.listProyects)
+    this.getProyects();
+  }
 
-  showTable(isShow: any){
+  showTable(isShow: any) {
     this.showData = isShow;
   }
 
