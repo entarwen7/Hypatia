@@ -11,12 +11,16 @@ export class ProyectsComponent implements OnInit {
 
   @Input() item!:any;
   dateFilterToPipe!: any
+  proyectos: any[] = []
 
   constructor(private _firebaseService: FirestoreService) { }
 
   ngOnInit(): void {
-    this.dateFilterToPipe = this._firebaseService.user.id
-    console.log('compmnete nuevo:', this.item)
+    for(let el of this.item.estudiantes){
+      if(el === this._firebaseService.user.id){
+          this.proyectos.push(this.item.nombre)
+        }
+    }
   }
 
 }
