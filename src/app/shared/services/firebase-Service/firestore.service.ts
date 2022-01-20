@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import {  Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
+  private project$ = new Subject<any>();
   user: any;
   listado: any;
   paths: any;
@@ -24,6 +25,17 @@ export class FirestoreService {
 
   getProyects(): Observable<any> {
     return this.firebase.collection('proyectos').snapshotChanges();
+  }
+
+  addProject(project:any){
+    this.project$.next(project);
+  }
+
+  getAddProject():Observable<any>{
+    return this.project$.asObservable();
+  }
+  saveProyect(id:any,data:any): Promise<any>{
+   return this.firebase.collection('usuarios').doc(id).update(data)
   }
 
   private getProyects2(): void {
@@ -52,5 +64,4 @@ export class FirestoreService {
   getCurrentProyect$(): Observable<any>{
     return this.proyectos.pipe(map((data: any) => data.filter((el: any) => el.estudiantes.filter((element: any)=> element === this.user.id))));
   }
-
 }

@@ -24,7 +24,7 @@ export class ReportComponent implements OnInit {
   learners$ = this._firebaseService.getCurrentStudent$()
   path$ = this._firebaseService.paths
   user = this._firebaseService.user
-  proyects = this._firebaseService.getCurrentProyect$()
+  proyects = this._firebaseService.proyectos
   proyects2: any
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class ReportComponent implements OnInit {
       }
     })*/
 
-    this.proyects.subscribe(res => console.log('poy: ', res))
+    //this.proyects.subscribe(res => console.log('poy: ', res))
     //console.log('id proy: ', this.proyects)
     console.log('id user: ', this._firebaseService.user.id)
     this.auth.verification().subscribe(auth=>{
