@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FirestoreService } from 'src/app/shared/services/firebase-Service/firestore.service';
 
 @Component({
   selector: 'app-user',
@@ -7,16 +8,31 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   @Input() estudiante: any;
+  @Input() bifurcation:any;
 
   isVisible: boolean= false;
+  targetvalue:any;
 
-  constructor() { }
+  constructor(private _firebaseService: FirestoreService) { 
+  }
+  
 
   ngOnInit(): void {
+    console.log("user bifur", this.bifurcation)
+    this.estudiante.proyecto.map((e:any)=>{
+      console.log(e[0].nombre);
+    });
+    
   }
 
   showSelect(info: boolean){
     this.isVisible = info;
   }
-
+  
+  addProject(event:any){
+    this.targetvalue = event.target.value;
+    console.log("select", this.targetvalue);
+    this._firebaseService.addProject(this.targetvalue);
+  }
+    
 }

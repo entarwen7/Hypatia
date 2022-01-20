@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthServiceService } from 'src/app/./shared/services/auth-service.service';
 import { FirestoreService } from 'src/app/shared/services/firebase-Service/firestore.service';
+
 
 @Component({
   selector: 'app-learners',
@@ -10,18 +14,23 @@ export class LearnersComponent implements OnInit {
   showData: boolean = false;
   listProyects: any;
 
-  constructor(private _firebaseService: FirestoreService) { }
+  constructor(private _firebaseService: FirestoreService, private auth: AuthServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getProyects();
-  }
+    this.auth.verification().subscribe(auth=>{
+      if(!auth){
+        this.router.navigate(['login']);
+       }
+  })
+  this.getProyects();
+}
 
   showTable(isShow: any){
     this.showData = isShow;
   }
 
   async getProyects() {
-    try {      
+    try {
       await this._firebaseService.getProyects().subscribe(doc => {
         console.log(doc[0].payload.doc.id);
         this.listProyects = [];
@@ -34,8 +43,8 @@ export class LearnersComponent implements OnInit {
         return this.listProyects;
       });
     } catch (error) {
-      
-    } 
+
+    }
   }
 
 }
