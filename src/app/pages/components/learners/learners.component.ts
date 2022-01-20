@@ -17,21 +17,21 @@ export class LearnersComponent implements OnInit {
   constructor(private _firebaseService: FirestoreService, private auth: AuthServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.auth.verification().subscribe(auth=>{
-      if(!auth){
+    this.getProyects();
+    this.auth.verification().subscribe(auth => {
+      if (!auth) {
         this.router.navigate(['login']);
-       }
-  })
-  this.getProyects();
-}
+      }
+    })
+  }
 
-  showTable(isShow: any){
+  showTable(isShow: any) {
     this.showData = isShow;
   }
 
-  async getProyects() {
+  getProyects() {
     try {
-      await this._firebaseService.getProyects().subscribe(doc => {
+      this._firebaseService.getProyects().subscribe(doc => {
         console.log(doc[0].payload.doc.id);
         this.listProyects = [];
         doc.forEach((element: any) => {
@@ -43,7 +43,6 @@ export class LearnersComponent implements OnInit {
         return this.listProyects;
       });
     } catch (error) {
-
     }
   }
 

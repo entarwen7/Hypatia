@@ -13,12 +13,19 @@
       <div class="btn-group me-2" role="group" aria-label="First group">
         <button *ngIf="!isVisible" (click)="showSelect(true)" type="button" class="btn btn-primary">Añadir</button>
         <div *ngIf="isVisible">
-          <select  (change)="addProject($event)" class="form-select" aria-label="Default select example">
-            <option *ngFor="let proyect of bifurcation"   [value]="proyect.id">{{proyect.nombre}}</option>
+          <select   (change)="addProject($event, 'update');editLearner(estudiante, 'update')" class="form-select" aria-label="Default select example">
+            <option selected value="">Selecciona proyecto</option>
+            <option *ngFor="let proyect of bifurcation"  [value]="proyect.id">{{proyect.nombre}}</option>
           </select>
         </div>
 
-        <button type="button" class="btn btn-primary">Eliminar</button>
+        <button *ngIf="!isVisibleDelete" (click)="showSelectDelete(true)" type="button" class="btn btn-primary">Eliminar</button>
+        <div *ngIf="isVisibleDelete">
+          <select   (change)="addProject($event, 'delete');editLearner(estudiante, 'delete')" class="form-select" aria-label="Default select example">
+            <option selected value="">Selecciona proyecto</option>
+            <option *ngFor="let nameP of estudiante.proyecto"   [value]="nameP[0].id">{{nameP[0].nombre}}</option>
+          </select>
+        </div>
       </div>
   </div>
   </div>
